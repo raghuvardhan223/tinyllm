@@ -33,17 +33,6 @@ Docker for containerization and reproducibility
 🎨 Streamlit-based multi-modal chat interface
 
 
-
- Directory Structure
-├── client.py      # Streamlit frontend UI
-├── main.py        # FastAPI backend entry point
-├── models.py      # Model loading & generation logic
-├── schemas.py     # Type definitions (Voice presets)
-├── utils.py       # Utility functions (audio/image processing)
-├── gpu.py         # CUDA device availability check
-├── .gitignore
-└── README.md
-
 ⚙️** Installation & Setup**
 1️⃣ Clone the repository
 git clone https://github.com/yourusername/multimodal-ai-platform.git
@@ -97,7 +86,11 @@ Models	TinyLlama-1.1B-Chat, Bark-small, Tiny-SD
 Libraries	Transformers, Diffusers, Torch, NumPy, Pillow, SoundFile
 Containerization	Docker
 Language	Python 3.10+
+
+
 **NOTE:** For the model to use the GPU the avaikable python version should be python 3.10 to 3.12. The python version greater than 3.12 will pop an error.
+
+
 🔥 Future Enhancements
 
  Add video generation via Hugging Face Diffusers
