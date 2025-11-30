@@ -32,17 +32,7 @@ Docker for containerization and reproducibility
 
 🎨 Streamlit-based multi-modal chat interface
 
- **Project Architecture**
-User (Streamlit UI)
-        │
-        ▼
-FastAPI Backend
- ├── /generate/text   → TinyLlama text generation
- ├── /generate/audio  → Bark speech synthesis
- └── /generate/image  → Stable Diffusion image generation
-        │
-        ▼
- Hugging Face Models + CUDA / CPU
+
 
  Directory Structure
 ├── client.py      # Streamlit frontend UI
