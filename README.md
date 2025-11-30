@@ -1,4 +1,6 @@
-Multi-Modal AI Content Generation Platform
+**Multi-Modal AI Content Generation Platform
+**
+
 
 A unified AI application that generates Text, Audio, and Images from user prompts — powered by Hugging Face models, FastAPI, and Streamlit.
 
