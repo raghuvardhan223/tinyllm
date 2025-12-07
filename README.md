@@ -124,11 +124,3 @@ Contributions and improvements are welcome (e.g., add tests, CI, better configur
 
 
 
----
-
-If you'd like, I can also:
-- Add a `requirements.txt` or `pyproject.toml` with pinned versions
-- Add a simple example script showing curl and python client calls
-- Improve BentoML instructions (build artifacts, containerization)
-
-Tell me which you'd like next!
