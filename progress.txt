@@ -1,0 +1,72 @@
+#12-07-2025
+we created bento.py file instead of runnog it into the same fastapi because if we try to use fastapi for to reload this model then we need to load the model everytime
+when the user tries to send a new api request to the model then the code tries to load the model file again from the disk or from the internet instead of keeping it inthe memory.
+What happens here?
+
+The user calls /generate?prompt=a+cat+in+space
+
+FastAPI executes the function generate()
+
+Inside it, StableDiffusionPipeline.from_pretrained(...) is called
+→ It downloads or loads the full model (often 1–4 GB)
+→ Then generates one image
+→ Then the function ends, and the model object (pipe) is destroyed.
+
+Next request?
+It does the same thing again: re-downloads or reloads the entire model into memory.
+
+What happens here?
+
+The user calls /generate?prompt=a+cat+in+space
+
+FastAPI executes the function generate()
+
+Inside it, StableDiffusionPipeline.from_pretrained(...) is called
+→ It downloads or loads the full model (often 1–4 GB)
+→ Then generates one image
+→ Then the function ends, and the model object (pipe) is destroyed.
+
+Next request?
+It does the same thing again: re-downloads or reloads the entire model into memory.
+
+BentoML automatically handles this “load once and reuse” pattern for you.
+
+@bentoml.service()
+class Generate:
+    def __init__(self):
+        self.pipe = load_image_model()  # <-- loaded only once
+
+BentoML does this:
+
+When the service starts, it calls your __init__() exactly once.
+
+It keeps self.pipe (your model) in memory.
+
+Each incoming request to /generate/image just reuses that self.pipe instance — no reload.
+
+So BentoML = a managed model lifecycle system.
+
+| Problem                    | FastAPI alone                                    | BentoML advantage                                                |
+| -------------------------- | ------------------------------------------------ | ---------------------------------------------------------------- |
+| Model loading              | Would reload each time unless managed manually   | Loaded once at startup and kept in memory                        |
+| Multiple models            | Hard to manage different model instances         | Bento can serve many models cleanly                              |
+| Production deployment      | You’d need to handle packaging, logging, scaling | BentoML handles packaging, versioning, and serving automatically |
+| Model-specific performance | No auto batching, tracing, or GPU support        | Bento handles batching, metrics, GPU allocation                  |
+| Integration                | Limited to Python code                           | BentoML can export to Docker, AWS, Kubernetes easily             |
+
+
+fEATURES OF BENTOML FRAMEWORK
+
+| Feature                 | What it means                                                                 |
+| ----------------------- | ----------------------------------------------------------------------------- |
+| **Model Serving**       | Expose any model (PyTorch, TensorFlow, Hugging Face, XGBoost, etc.) as an API |
+| **Model Management**    | Save, version, and load models consistently                                   |
+| **Auto Scaling**        | Scale across CPUs/GPUs automatically                                          |
+| **Batching**            | Combines requests efficiently for speed                                       |
+| **Containerization**    | Builds Docker images automatically (`bentoml build`)                          |
+| **Deployment-ready**    | Works on AWS Lambda, Kubernetes, or local dev                                 |
+| **Multi-model serving** | Serve text, audio, and image models together                                  |
+| **OpenAPI docs**        | Built-in Swagger UI (like FastAPI)                                            |
+
+
+##next step --- need to implement middlewares
