@@ -4,7 +4,7 @@ TinyLLM — a minimal multi-modal Local LLM playground with FastAPI + BentoML
 
 This repository demonstrates a small, opinionated setup for running local multimodal model endpoints (text, audio, image) together in a simple FastAPI service. It's intended as a lightweight developer playground or reference for packaging a model with BentoML for production-style serving.
 
-⚠️ NOTE: This project downloads and uses large ML model weights (Diffusion / LLM / audio models). Use a machine with sufficient disk, memory, and — ideally — a GPU.
+NOTE: This project downloads and uses large ML model weights (Diffusion / LLM / audio models). Use a machine with sufficient disk, memory, and ideally a GPU.
 
 ---
 
