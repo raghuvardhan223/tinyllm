@@ -122,11 +122,7 @@ BentoML avoids reloading large model weights per-request and helps packaging and
 
 Contributions and improvements are welcome (e.g., add tests, CI, better configuration, or packaging). Open an issue or a PR.
 
----
 
-## License
-
-Add your preferred license file (e.g., MIT). This repository has no license file by default.
 
 ---
 
