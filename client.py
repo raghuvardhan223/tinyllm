@@ -58,11 +58,10 @@ import streamlit as st
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from diffusers import DiffusionPipeline
-from PIL import Image
 
 st.set_page_config(page_title="TinyLLM Playground", layout="wide")
 st.title("🎨 TinyLLM Multi-Modal Playground")
-st.write("Text Generation | Image Generation | Running Locally!")
+st.write("Text Generation | Image Generation | All running locally!")
 
 # ============ MODEL LOADING (cached, loads once) ============
 @st.cache_resource
@@ -138,6 +137,9 @@ if st.button("Generate Image", key="image_btn"):
                     st.error(f"Image generation error: {e}")
             else:
                 st.error("Image model failed to load")
+
+st.divider()
+st.info("💡 **Note:** First run downloads model weights (~2-5 GB). Subsequent runs are instant!")
 
 st.divider()
 st.info("💡 **Note:** First run downloads model weights (~2-5 GB). Subsequent runs are instant!")
