@@ -35,7 +35,7 @@ Files of interest:
 1. Clone the repository
 
 ```bash
-git clone https://github.com/<your-username>/tinyllm.git
+git clone https://github.com/raghuvardhan223/tinyllm.git
 cd tinyllm
 ```
 
